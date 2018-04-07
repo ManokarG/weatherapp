@@ -1,11 +1,15 @@
-package com.github.weatherapp
+package com.github.weatherapp.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.github.weatherapp.models.WeatherForecast
+import com.github.weatherapp.ui.view.HomeActivityView
+import com.github.weatherapp.di.Injection
+import com.github.weatherapp.R
+import com.github.weatherapp.data.models.WeatherForecast
+import com.github.weatherapp.ui.presenter.HomeActivityPresenter
 import kotlinx.android.synthetic.main.activity_main.*
 
-class HomeActivity : AppCompatActivity(), HomeActivityView{
+class HomeActivity : AppCompatActivity(), HomeActivityView {
 
     lateinit var presenter : HomeActivityPresenter
 

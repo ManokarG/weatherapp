@@ -1,6 +1,6 @@
-package com.github.weatherapp
+package com.github.weatherapp.ui.view
 
-import com.github.weatherapp.models.WeatherForecast
+import com.github.weatherapp.data.models.WeatherForecast
 
 /**
  * Created by Manokar on 4/7/18.

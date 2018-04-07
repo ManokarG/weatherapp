@@ -1,5 +1,9 @@
-package com.github.weatherapp
+package com.github.weatherapp.di
 
+import com.github.weatherapp.BuildConfig
+import com.github.weatherapp.Constants
+import com.github.weatherapp.app.WeatherApplication
+import com.github.weatherapp.data.ApiService
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.Interceptor

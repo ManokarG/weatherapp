@@ -1,6 +1,8 @@
-package com.github.weatherapp
+package com.github.weatherapp.ui.presenter
 
-import com.github.weatherapp.models.WeatherForecast
+import com.github.weatherapp.ui.view.HomeActivityView
+import com.github.weatherapp.data.ApiService
+import com.github.weatherapp.data.models.WeatherForecast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

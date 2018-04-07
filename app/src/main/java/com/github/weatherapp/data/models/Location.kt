@@ -1,4 +1,4 @@
-package com.github.weatherapp.models
+package com.github.weatherapp.data.models
 
 /**
  * Created by Manokar on 4/7/18.

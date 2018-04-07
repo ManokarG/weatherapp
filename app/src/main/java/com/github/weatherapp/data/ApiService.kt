@@ -1,6 +1,7 @@
-package com.github.weatherapp
+package com.github.weatherapp.data
 
-import com.github.weatherapp.models.WeatherForecast
+import com.github.weatherapp.Constants
+import com.github.weatherapp.data.models.WeatherForecast
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -9,7 +10,7 @@ import retrofit2.http.Query
  * Created by Manokar on 4/7/18.
  */
 interface ApiService {
-    @GET("forecast.json?key=a442bb52ef5146a484d145959180704")
+    @GET("v1/forecast.json?key=${Constants.key}")
     fun getWeatherData(
             @Query("q") city: String,
             @Query("days") totalCount: Int): Call<WeatherForecast>
