@@ -23,7 +23,6 @@ class Injection {
     companion object {
         private val USER_AGENT = "User-Agent"
         private val ADEPT_ANDROID_APP = "Adept-Android-App"
-        private val VERSION = "version"
         private val CACHE_CONTROL = "Cache-Control"
 
         fun getOkHttpClient(): OkHttpClient {
@@ -32,11 +31,28 @@ class Injection {
                             .addInterceptor(provideHttpLoggingInterceptor())
                             .addInterceptor(provideUrlAndHeaderInterceptor())
                             .addInterceptor(provideOfflineCacheInterceptor())
+                            .addInterceptor(provideKeyInterceptor())
                             .cache(provideCache())
                             .addNetworkInterceptor(provideCacheInterceptor())
                             .build()
 
             return okHttpClient
+        }
+
+        private fun provideKeyInterceptor(): Interceptor {
+            return Interceptor { chain ->
+                val request = chain.request()
+                val builder = request.newBuilder()
+
+                val url = request.url()
+                        .newBuilder()
+                        .addQueryParameter("key", Constants.key)
+                        .build()
+
+                builder.url(url)
+
+                chain.proceed(builder.build())
+            }
         }
 
 
@@ -76,7 +92,6 @@ class Injection {
 
                 val url = request.url()
                         .newBuilder()
-                        .addQueryParameter(VERSION, BuildConfig.VERSION_NAME)
                         .build()
 
                 builder.url(url)

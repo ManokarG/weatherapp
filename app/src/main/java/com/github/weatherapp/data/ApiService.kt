@@ -10,7 +10,7 @@ import retrofit2.http.Query
  * Created by Manokar on 4/7/18.
  */
 interface ApiService {
-    @GET("v1/forecast.json?key=${Constants.key}")
+    @GET("v1/forecast.json")
     fun getWeatherData(
             @Query("q") city: String,
             @Query("days") totalCount: Int): Call<WeatherForecast>
