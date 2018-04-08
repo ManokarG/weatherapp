@@ -7,12 +7,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * Created by Manokar on 4/7/18.
  */
-class HomeActivityPresenter(private val homeActivityView : HomeActivityView,
+class HomeActivityPresenter @Inject constructor(
+                             private val homeActivityView : HomeActivityView,
                             private val apiService : ApiService) {
+
     fun fetchWeatherData() {
         apiService.getWeatherData("Chennai", 4)
                 .enqueue(object : Callback<WeatherForecast> {
@@ -31,4 +34,5 @@ class HomeActivityPresenter(private val homeActivityView : HomeActivityView,
 
                 })
     }
+
 }

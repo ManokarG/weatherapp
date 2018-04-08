@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -20,6 +22,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -34,7 +42,7 @@ dependencies {
 
     // Arch Lifecycle, Room, Rxjava
     implementation "android.arch.lifecycle:extensions:1.1.1"
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+    kapt "android.arch.lifecycle:compiler:1.1.1"
     implementation "android.arch.persistence.room:runtime:1.0.0"
 
     kapt "android.arch.persistence.room:compiler:1.0.0"
@@ -53,6 +61,14 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:4.7.0"
+
+    // Dagger2
+    implementation "com.google.dagger:dagger:2.13"
+    kapt "com.google.dagger:dagger-compiler:2.13"
+
+    //Dagger 2 - Testing (Required if you are using in testing)
+    kaptTest "com.google.dagger:dagger-compiler:2.13"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:2.13"
 
     // Local Unit Testing
     testImplementation "android.arch.core:core-testing:1.1.1"
