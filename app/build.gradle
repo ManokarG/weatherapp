@@ -56,6 +56,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
+    // RxJava Retrofit 2 Adapter
+    compile "com.squareup.retrofit2:adapter-rxjava2:2.2.0"
+
     // Okhttp loggin interceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 

@@ -3,6 +3,7 @@ package com.github.weatherapp.ui.presenter
 import com.github.weatherapp.ui.view.HomeActivityView
 import com.github.weatherapp.data.ApiService
 import com.github.weatherapp.data.models.WeatherForecast
+import com.github.weatherapp.util.RxUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,21 +19,15 @@ class HomeActivityPresenter @Inject constructor(
 
     fun fetchWeatherData() {
         apiService.getWeatherData("Chennai", 4)
-                .enqueue(object : Callback<WeatherForecast> {
-                    override fun onResponse(call: Call<WeatherForecast>?, response: Response<WeatherForecast>?) {
-                        response?.let {
-                            if(response.isSuccessful){
-                                homeActivityView.showWeatherForecast(response.body())
-                            }
-                        }
-                    }
-
-                    override fun onFailure(call: Call<WeatherForecast>?, t: Throwable?) {
-                        homeActivityView.showErrorView()
-                        Timber.e(t)
-                    }
-
-                })
+                .compose {
+                    RxUtil.applySchedulersToSingleObservable(it)
+                }
+                .subscribe({
+                    homeActivityView.showWeatherForecast(it)
+                }, {
+                    homeActivityView.showErrorView()
+                    Timber.e(it)
+                });
     }
 
 }

@@ -2,6 +2,7 @@ package com.github.weatherapp.data
 
 import com.github.weatherapp.Constants
 import com.github.weatherapp.data.models.WeatherForecast
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,5 +14,5 @@ interface ApiService {
     @GET("v1/forecast.json?key=${Constants.key}")
     fun getWeatherData(
             @Query("q") city: String,
-            @Query("days") totalCount: Int): Call<WeatherForecast>
+            @Query("days") totalCount: Int): Single<WeatherForecast>
 }
