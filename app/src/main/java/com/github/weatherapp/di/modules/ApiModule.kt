@@ -1,12 +1,16 @@
-package com.github.weatherapp.di
+package com.github.weatherapp.di.modules
 
 import com.github.weatherapp.Constants
 import com.github.weatherapp.data.ApiService
 import dagger.Module
 import dagger.Provides
+import okhttp3.Cache
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -27,13 +31,16 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient() : OkHttpClient{
+    fun provideOkHttpClient(cache: Cache?, httpLoggingInterceptor: HttpLoggingInterceptor,
+                            @Named(Constants.URL_HEADER_INTERCEPTOR) urlAndHeaderInterceptor : Interceptor,
+                            @Named(Constants.OFFLINE_CACHE_INTERCEPTOR) offlineCacheInterceptor : Interceptor,
+                            @Named(Constants.CACHE_INTERCEPTOR) cacheInterceptor : Interceptor) : OkHttpClient{
         return OkHttpClient.Builder()
-                /*.addInterceptor(httpLoggingInterceptor)
+                .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(urlAndHeaderInterceptor)
                 .addInterceptor(offlineCacheInterceptor)
                 .cache(cache)
-                .addNetworkInterceptor(cacheInterceptor)*/
+                .addNetworkInterceptor(cacheInterceptor)
                 .build()
     }
 

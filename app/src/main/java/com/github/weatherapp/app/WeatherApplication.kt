@@ -4,9 +4,12 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import com.github.weatherapp.BuildConfig
-import com.github.weatherapp.di.ApiModule
-import com.github.weatherapp.di.ApplicationComponent
-import com.github.weatherapp.di.DaggerApplicationComponent
+import com.github.weatherapp.di.modules.ApiModule
+import com.github.weatherapp.di.components.ApplicationComponent
+import com.github.weatherapp.di.components.DaggerApplicationComponent
+import com.github.weatherapp.di.modules.ApplicationModule
+import com.github.weatherapp.di.modules.CacheModule
+import com.github.weatherapp.di.modules.InterceptorModule
 import timber.log.Timber
 
 /**
@@ -35,6 +38,9 @@ open class WeatherApplication : Application() {
     private fun initDi() {
         applicationComponent = DaggerApplicationComponent
                 .builder()
+                .applicationModule(ApplicationModule(instance))
+                .cacheModule(CacheModule())
+                .interceptorModule(InterceptorModule())
                 .apiModule(ApiModule())
                 .build()
     }

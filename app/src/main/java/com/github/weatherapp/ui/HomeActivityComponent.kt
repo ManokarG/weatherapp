@@ -1,6 +1,6 @@
 package com.github.weatherapp.ui
 
-import com.github.weatherapp.di.ApplicationComponent
+import com.github.weatherapp.di.components.ApplicationComponent
 import com.github.weatherapp.ui.presenter.HomeActivityPresenterModule
 import dagger.Component
 

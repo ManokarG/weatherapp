@@ -3,7 +3,6 @@ package com.github.weatherapp.ui
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.github.weatherapp.ui.view.HomeActivityView
-import com.github.weatherapp.di.Injection
 import com.github.weatherapp.R
 import com.github.weatherapp.app.WeatherApplication
 import com.github.weatherapp.data.models.WeatherForecast
